@@ -4,29 +4,18 @@
 使用 `date` 插槽可以自定义日期单元格的内容，例如添加农历、节日等信息。
 </markdown>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
+const lunarDates: Record<string, string> = {
+  '2024-1-1': '廿一',
+  '2024-1-15': '初五',
+  '2024-2-10': '初一',
+  '2024-12-25': '圣诞'
+}
 
-export default defineComponent({
-  setup() {
-    // 简单的农历映射示例（仅用于演示）
-    const lunarDates: Record<string, string> = {
-      '2024-1-1': '廿一',
-      '2024-1-15': '初五',
-      '2024-2-10': '初一',
-      '2024-12-25': '圣诞'
-    }
-
-    const getLunarDate = (year: number, month: number, date: number) => {
-      const key = `${year}-${month + 1}-${date}`
-      return lunarDates[key]
-    }
-
-    return {
-      getLunarDate
-    }
-  }
-})
+function getLunarDate(year: number, month: number, date: number) {
+  const key = `${year}-${month + 1}-${date}`
+  return lunarDates[key]
+}
 </script>
 
 <template>
